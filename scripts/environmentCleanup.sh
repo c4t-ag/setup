@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#####
+# This script can be used in an existing environment where the genesis block shall be recreated after changes to the software has been made.
+# Assumption is that the config is named config_test.toml and the script is executed in the directory where the config and the genesis
+# block is located (named: testnet.g)
+#####
+
 # Currently the validator public key is not needed for the env cleanup
 #PUBLICKEY=`cat validator-public.key`
 CONFIGFILE=config_test.toml
