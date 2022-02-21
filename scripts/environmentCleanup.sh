@@ -9,6 +9,8 @@
 # Currently the validator public key is not needed for the env cleanup
 #PUBLICKEY=`cat validator-public.key`
 CONFIGFILE=config_test.toml
+# ChainID used for the genesis file (500 for mainnet, 501 for testnet, 555 for isolated local playgrounds)
+CHAINID=501
 
 if [ ! -f "$CONFIGFILE" ] ; then
 	echo "The configuration file $CONFIGFILE has not been found. No cleanup possible - We need to setup from scratch here!"
@@ -25,6 +27,6 @@ killall apiserver
 mongo chain4travel --eval "printjson(db.dropDatabase())"
 
 echo "#### Creating new genesis block"
-opera --config "$CONFIGFILE" creategenesis testnet.g
+opera --config "$CONFIGFILE" --creategenesis.chainid "$CHAINID" creategenesis testnet.g
 
 echo "#### All done"
